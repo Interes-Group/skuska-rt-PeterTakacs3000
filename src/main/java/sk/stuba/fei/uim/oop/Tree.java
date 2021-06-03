@@ -1,9 +1,12 @@
 package sk.stuba.fei.uim.oop;
 
+import lombok.Data;
+
 import java.awt.*;
 
+@Data
 public class Tree {
-    private int x, y, width, height;
+    int x, y, width, height;
     Color color;
 
     public Tree(int x, int y, int width, int height, Color color) {
@@ -16,7 +19,7 @@ public class Tree {
 
     public void paintTree(Graphics g){
         g.setColor(color);
-        g.drawOval(x, y, width, (2/3)*height);
-        g.drawRect((1/3)*width,(2/3)*height, (2/3)*width, height);
+        g.fillOval(x, y, width, (height/3)*2);
+        g.fillRect(x+(width/3), y+((height/3))*2, width/3, height/3);
     }
 }

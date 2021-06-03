@@ -25,12 +25,16 @@ public class MyCanvas extends Canvas implements MouseListener, MouseMotionListen
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        xPos = e.getX();
+        yPos = e.getY();
+        actualTree = new Tree(xPos, yPos, 1, 1, Color.RED);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        trees.add(actualTree);
+        repaint();
+        actualTree = null;
     }
 
     @Override
@@ -45,11 +49,24 @@ public class MyCanvas extends Canvas implements MouseListener, MouseMotionListen
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        if(actualTree != null){
+            actualTree.setWidth(e.getX() - xPos);
+            actualTree.setHeight(e.getY() - yPos);
+            repaint();
+        }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
 
+    }
+
+    public void paint(Graphics g){
+        for(Tree t : trees){
+            t.paintTree(g);
+        }
+        if(actualTree != null){
+            actualTree.paintTree(g);
+        }
     }
 }
