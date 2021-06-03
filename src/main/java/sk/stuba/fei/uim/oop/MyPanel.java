@@ -42,7 +42,12 @@ public class MyPanel extends JPanel implements ActionListener {
             canvas.dragEnabled = true;
         }
         else if(e.getSource() == dalsiaFarba){
-
+            if(canvas.actualColor < 2) {
+                canvas.actualColor++;
+            }
+            else{
+                canvas.actualColor = 0;
+            }
         }
     }
 }
