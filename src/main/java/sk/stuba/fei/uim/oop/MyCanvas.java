@@ -10,6 +10,7 @@ public class MyCanvas extends Canvas implements MouseListener, MouseMotionListen
     public ArrayList<Tree> trees = new ArrayList<>();
     private Tree actualTree;
     int xPos, yPos;
+    private boolean drag = false;
 
     public MyCanvas() {
         super();
@@ -27,14 +28,27 @@ public class MyCanvas extends Canvas implements MouseListener, MouseMotionListen
     public void mousePressed(MouseEvent e) {
         xPos = e.getX();
         yPos = e.getY();
-        actualTree = new Tree(xPos, yPos, 1, 1, Color.RED);
+        for(Tree t : trees){
+            if((xPos > t.getX()) && (yPos > t.getY())){
+                if((xPos < t.getX()+t.getWidth()) && (yPos < t.getY()+t.getHeight())){
+                    drag = true;
+                    actualTree = t;
+                }
+            }
+        }
+        if(!drag){
+            actualTree = new Tree(xPos, yPos, 1, 1, Color.RED);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        trees.add(actualTree);
+        if(!drag) {
+            trees.add(actualTree);
+        }
         repaint();
         actualTree = null;
+        drag = false;
     }
 
     @Override
@@ -50,9 +64,16 @@ public class MyCanvas extends Canvas implements MouseListener, MouseMotionListen
     @Override
     public void mouseDragged(MouseEvent e) {
         if(actualTree != null){
-            actualTree.setWidth(e.getX() - xPos);
-            actualTree.setHeight(e.getY() - yPos);
-            repaint();
+            if(drag){
+                actualTree.setX(e.getX());
+                actualTree.setY(e.getY());
+                repaint();
+            }
+            else {
+                actualTree.setWidth(e.getX() - xPos);
+                actualTree.setHeight(e.getY() - yPos);
+                repaint();
+            }
         }
     }
 
