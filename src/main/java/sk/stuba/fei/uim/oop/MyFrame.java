@@ -6,7 +6,7 @@ import java.awt.*;
 public class MyFrame extends JFrame {
     public MyFrame(){
         MyCanvas canvas = new MyCanvas();
-        MyPanel panel = new MyPanel();
+        MyPanel panel = new MyPanel(canvas);
         setSize(500, 500);
         setVisible(true);
         setLayout(new BorderLayout());

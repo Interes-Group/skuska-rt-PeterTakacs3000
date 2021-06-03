@@ -11,13 +11,20 @@ public class MyPanel extends JPanel implements ActionListener {
     JButton dalsiaFarba = new JButton("Dalsia farba");
     JLabel vypis = new JLabel("Kreslenie: ");
 
-    public MyPanel(){
+    MyCanvas canvas;
+
+    public MyPanel(MyCanvas canvas){
         super();
+        this.canvas = canvas;
         setLayout(new GridBagLayout());
         strom.setPreferredSize(new Dimension(75,30));
         presun.setPreferredSize(new Dimension(75,30));
         dalsiaFarba.setPreferredSize(new Dimension(75,30));
         vypis.setPreferredSize(new Dimension(75,30));
+        strom.addActionListener(this);
+        presun.addActionListener(this);
+        dalsiaFarba.addActionListener(this);
+
         add(strom);
         add(presun);
         add(dalsiaFarba);
@@ -26,6 +33,16 @@ public class MyPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == strom){
+            canvas.drawEnabled = true;
+            canvas.dragEnabled = false;
+        }
+        else if(e.getSource() == presun){
+            canvas.drawEnabled = false;
+            canvas.dragEnabled = true;
+        }
+        else if(e.getSource() == dalsiaFarba){
 
+        }
     }
 }
