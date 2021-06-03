@@ -9,9 +9,10 @@ public class MyPanel extends JPanel implements ActionListener {
     JButton strom = new JButton("Strom");
     JButton presun = new JButton("Presun");
     JButton dalsiaFarba = new JButton("Dalsia farba");
-    JLabel vypis = new JLabel("Kreslenie: ");
+    JLabel vypis = new JLabel("");
 
     MyCanvas canvas;
+
 
     public MyPanel(MyCanvas canvas){
         super();
@@ -24,6 +25,8 @@ public class MyPanel extends JPanel implements ActionListener {
         strom.addActionListener(this);
         presun.addActionListener(this);
         dalsiaFarba.addActionListener(this);
+        vypis.setOpaque(true);
+        vypis.setBackground(Color.RED);
 
         add(strom);
         add(presun);
@@ -36,10 +39,12 @@ public class MyPanel extends JPanel implements ActionListener {
         if(e.getSource() == strom){
             canvas.drawEnabled = true;
             canvas.dragEnabled = false;
+            vypis.setText("Strom");
         }
         else if(e.getSource() == presun){
             canvas.drawEnabled = false;
             canvas.dragEnabled = true;
+            vypis.setText("Presun");
         }
         else if(e.getSource() == dalsiaFarba){
             if(canvas.actualColor < 2) {
@@ -48,6 +53,8 @@ public class MyPanel extends JPanel implements ActionListener {
             else{
                 canvas.actualColor = 0;
             }
+            vypis.setBackground(canvas.colors.get(canvas.actualColor));
+            repaint();
         }
     }
 }

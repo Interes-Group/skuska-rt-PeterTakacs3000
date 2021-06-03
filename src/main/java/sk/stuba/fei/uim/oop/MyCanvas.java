@@ -2,7 +2,6 @@ package sk.stuba.fei.uim.oop;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -10,18 +9,13 @@ import java.util.ArrayList;
 
 public class MyCanvas extends Canvas implements MouseListener, MouseMotionListener{
     public ArrayList<Tree> trees = new ArrayList<>();
-    ArrayList<Color> colors = new ArrayList<>();
+    public ArrayList<Color> colors = new ArrayList<>();
     Tree actualTree;
     int xPos, yPos;
     boolean drag = false;
     public boolean dragEnabled = false;
     public boolean drawEnabled = false;
     public int actualColor = 0;
-
-    JButton strom = new JButton("Strom");
-    JButton presun = new JButton("Presun");
-    JButton dalsiaFarba = new JButton("Dalsia farba");
-    JLabel vypis = new JLabel("Kreslenie: ");
 
     public MyCanvas() {
         super();
