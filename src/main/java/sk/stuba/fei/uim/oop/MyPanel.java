@@ -9,7 +9,7 @@ public class MyPanel extends JPanel implements ActionListener {
     JButton strom = new JButton("Strom");
     JButton presun = new JButton("Presun");
     JButton dalsiaFarba = new JButton("Dalsia farba");
-    JLabel vypis = new JLabel("");
+    JLabel vypis = new JLabel("Strom");
 
     MyCanvas canvas;
 

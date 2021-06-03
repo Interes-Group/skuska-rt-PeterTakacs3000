@@ -14,7 +14,7 @@ public class MyCanvas extends Canvas implements MouseListener, MouseMotionListen
     int xPos, yPos;
     boolean drag = false;
     public boolean dragEnabled = false;
-    public boolean drawEnabled = false;
+    public boolean drawEnabled = true;
     public int actualColor = 0;
 
     public MyCanvas() {
